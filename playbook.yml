@@ -1,0 +1,44 @@
+---
+- hosts: dev
+  vars:
+    applications:
+      - google-chrome
+      - iterm2
+      - brackets
+      - sublime-text
+      - java
+      - intellij-idea-ce
+
+  tasks:
+    - name: Enable installing specific versions of casks
+      shell: brew tap caskroom/versions
+
+    - name: Check for installed apps(casks)
+      shell: brew cask list | grep {{ item }}
+      register: installed_applications
+      with_items: '{{applications}}'
+      ignore_errors: true
+
+    - name: Install apps with brew-cask
+      shell: brew cask install {{ item }}
+      with_items: '{{applications}}'
+      when: item not in installed_applications.results|map(attribute='stdout')
+
+    - name: install brew packages
+      homebrew: update_homebrew=yes name={{ item }}
+      with_items:
+        - maven
+        - wget
+        - scala
+        - sbt
+        - python
+        - tree
+        - watch
+        - ag
+        - docker
+
+    - name: gitconfig
+      git_config: name={{ item.name }} scope=global value={{ item.value }}
+      with_items:
+        - { name: 'push.default', value: 'tracking' }
+        - { name: 'branch.autosetuprebase', value: 'always' }
