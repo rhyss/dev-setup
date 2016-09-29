@@ -42,3 +42,4 @@
       with_items:
         - { name: 'push.default', value: 'tracking' }
         - { name: 'branch.autosetuprebase', value: 'always' }
+        - { name: 'alias.st', value: 'status' }
