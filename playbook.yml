@@ -43,3 +43,5 @@
         - { name: 'push.default', value: 'tracking' }
         - { name: 'branch.autosetuprebase', value: 'always' }
         - { name: 'alias.st', value: 'status' }
+        - { name: 'user.name', value: 'Rhys Sharrem' }
+        - { name: 'user.email', value: 'rhys.sharrem@gmail.com' }
