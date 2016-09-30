@@ -37,5 +37,11 @@
         - ag
         - docker
 
-    - name: gitconfig
+    - name: git config
       copy: src=gitconfig dest=~/.gitconfig backup=yes
+
+    - name: git autocomplete
+      copy: src=git-completion.bash dest=~/.git-completion.bash backup=yes mode=770
+
+    - name: bash_profile
+      copy: src=bash_profile dest=~/.bash_profile backup=yes  mode=770
