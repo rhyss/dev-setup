@@ -1,7 +1,7 @@
 ---
 - hosts: dev
   vars:
-    applications:
+    - applications:
       - google-chrome
       - iterm2
       - brackets
@@ -38,10 +38,4 @@
         - docker
 
     - name: gitconfig
-      git_config: name={{ item.name }} scope=global value={{ item.value }}
-      with_items:
-        - { name: 'push.default', value: 'tracking' }
-        - { name: 'branch.autosetuprebase', value: 'always' }
-        - { name: 'alias.st', value: 'status' }
-        - { name: 'user.name', value: 'Rhys Sharrem' }
-        - { name: 'user.email', value: 'rhys.sharrem@gmail.com' }
+      copy: src=gitconfig dest=~/.gitconfig backup=yes
