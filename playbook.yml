@@ -8,6 +8,7 @@
       - sublime-text
       - java
       - intellij-idea-ce
+      - dropbox
 
   tasks:
     - name: Enable installing specific versions of casks
@@ -36,6 +37,7 @@
         - watch
         - ag
         - docker
+        - mongodb
 
     - name: git config
       copy: src=gitconfig dest=~/.gitconfig backup=yes
