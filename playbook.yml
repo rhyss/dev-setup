@@ -9,6 +9,7 @@
       - java
       - intellij-idea-ce
       - dropbox
+      - evernote
 
   tasks:
     - name: Enable installing specific versions of casks
