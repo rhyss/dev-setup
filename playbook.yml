@@ -10,6 +10,7 @@
       - intellij-idea-ce
       - dropbox
       - evernote
+      - tunnelblick
 
   tasks:
     - name: Enable installing specific versions of casks
@@ -38,7 +39,8 @@
         - watch
         - ag
         - docker
-        - mongodb
+        - mongo
+        - typesafe-activator
 
     - name: git config
       copy: src=gitconfig dest=~/.gitconfig backup=yes
@@ -48,3 +50,11 @@
 
     - name: bash_profile
       copy: src=bash_profile dest=~/.bash_profile backup=yes  mode=770
+
+    - name: mongo dirs
+      file: path={{item}} state=directory mode=777
+      become: yes
+      become_method: sudo
+      with_items:
+        - /data
+        - /data/db
