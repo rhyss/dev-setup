@@ -11,6 +11,11 @@
       - dropbox
       - evernote
       - tunnelblick
+      - virtualbox
+      - vagrant
+      - spectacle
+      - teamviewer
+      - rdm
 
   tasks:
     - name: Enable installing specific versions of casks
@@ -27,6 +32,9 @@
       with_items: '{{applications}}'
       when: item not in installed_applications.results|map(attribute='stdout')
 
+    - name: bash_profile
+      copy: src=bash_profile dest=~/.bash_profile backup=yes  mode=770
+
     - name: install brew packages
       homebrew: update_homebrew=yes name={{ item }}
       with_items:
@@ -41,15 +49,18 @@
         - docker
         - mongo
         - typesafe-activator
+        - pyenv-virtualenv
+        - node
+        - neo4j
+        - nvm
+        - chromedriver
+        - redis
 
     - name: git config
       copy: src=gitconfig dest=~/.gitconfig backup=yes
 
     - name: git autocomplete
       copy: src=git-completion.bash dest=~/.git-completion.bash backup=yes mode=770
-
-    - name: bash_profile
-      copy: src=bash_profile dest=~/.bash_profile backup=yes  mode=770
 
     - name: mongo dirs
       file: path={{item}} state=directory mode=777
